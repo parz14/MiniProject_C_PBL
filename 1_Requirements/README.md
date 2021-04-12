@@ -20,7 +20,7 @@ On an abstract level, a file is a collection of bytes stored on a storage device
 
 ## Defining Our System
 
-
+![Basic system design](file:///C:/Users/sankalp%20pc/Pictures/basicsystem.html)
 
 
 
