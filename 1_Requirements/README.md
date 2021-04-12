@@ -24,6 +24,11 @@ On an abstract level, a file is a collection of bytes stored on a storage device
 
 ### Explaination
 
-* 
+* For this system user will enter the required data which is needed to be printed or available in reciept / document.
+* Input data need to be arranged in order as per template file which is designed in a specific format.
+* Output document is generated with all the information in required format. 
+* Such applications are generally found in shopping malls, general stores, drive thrus etc.
 
+## SWOT Analysis
 
+![Automated Reciept generator](https://user-images.githubusercontent.com/80450214/114418283-fc65d600-9bcf-11eb-9e9c-fb5075601151.png)
