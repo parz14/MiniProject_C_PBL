@@ -1,7 +1,16 @@
-# Automated Reciept Generator 
+# Automated Reciept Generator
+
+### Workflows
+
+| Build | Code Quality | Unity | Git Inspector |
+|-----|-----|-----|-----|
+| TBD | TBD | TBD | TBD |
+
 * This is a Mini project based on C programming language with *applied SDLC*.
 
 * SDLC is a systematic process for building software that ensures the quality and correctness of the software built.
+
+* Please head to `1_Requirements` for Introduction & details of the project.
 
 * Stages of SDLC covered in this particular project are:
 
