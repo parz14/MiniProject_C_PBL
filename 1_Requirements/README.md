@@ -39,15 +39,15 @@ On an abstract level, a file is a collection of bytes stored on a storage device
 
 | ID | Description | Status |
 |-----|-----|-----|
-|`hlr01` | Data input to be printed or available in reciept / document | To be Implemented |
-| `hlr02` | Review of input details | To be Implemented |
-| `hlr03` | Automatic price calculation in bill templates | To be Implemented |
+|`hlr01` | Data input to be printed or available in reciept / document | Implemented |
+| `hlr02` | Review of input details | Implemented |
+| `hlr03` | Automatic total price calculation in bill templates | Implemented |
 
 ### 2. Low level Requirements
 
 | ID | Description | HLR associativity | Status |
 |-----|-----|-----|-----|
-|`llr01` | User can choose between available templates | `hlr01` | To be Implemented |
-|`llr02` | All the input data will depend on type or format of pre designed template | `hlr01` | To be Implemented |
-| `llr03` | Option to change i.e, add or delete the input data | `hlr02` | To be Implemented |
-| `llr04` | Allow user to calculate total price with discounts if applicable  | `hlr03` | To be Implemented |
+|`llr01` | User can choose between available templates | `hlr01` | Implemented |
+|`llr02` | All the input data will depend on type or format of pre designed template | `hlr01` | Implemented |
+| `llr03` | Option to change i.e, add or delete the input data | `hlr02` | Implemented |
+| `llr04` | Allow user to calculate total price with discounts if applicable  | `hlr03` | Implemented |
