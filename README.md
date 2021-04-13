@@ -1,6 +1,6 @@
 # Automated Reciept Generator
 
-### Workflows
+#### Workflows
 
 | Build | Code Quality | Unity | Git Inspector |
 |-----|-----|-----|-----|
