@@ -32,3 +32,22 @@ On an abstract level, a file is a collection of bytes stored on a storage device
 ## SWOT Analysis
 
 ![Automated Reciept generator](https://user-images.githubusercontent.com/80450214/114418283-fc65d600-9bcf-11eb-9e9c-fb5075601151.png)
+
+## Detail Requirements
+
+### 1. High level Requirements
+
+| ID | Description | Status |
+|-----|-----|-----|
+|`hlr01` | Data input to be printed or available in reciept / document | To be Implemented |
+| `hlr02` | Review of input details | To be Implemented |
+| `hlr03` | Automatic price calculation in bill templates | To be Implemented |
+
+### 2. Low level Requirements
+
+| ID | Description | HLR associativity | Status |
+|-----|-----|-----|-----|
+|`llr01` | User can choose between available templates | `hlr01` | To be Implemented |
+|`llr02` | All the input data will depend on type or format of pre designed template | `hlr01` | To be Implemented |
+| `llr03` | Option to change i.e, add or delete the input data | `hlr02` | To be Implemented |
+| `llr04` | Allow user to calculate total price with discounts if applicable  | `hlr03` | To be Implemented |
