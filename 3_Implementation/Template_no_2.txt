@@ -1,0 +1,1 @@
+Thank you {{name}} for shopping with us. This is your invoice, generated at counter number: {{counter_no}} on {{date}}. You purchased total {{total_item_no}} items. Total price:  {{total_price}} ;  Discount applied (%):  {{discount}} ;   Payable amount:  {{final_price}} . Thank You {{name}}, please visit again!
