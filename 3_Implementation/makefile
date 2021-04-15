@@ -51,8 +51,8 @@ coverageCheck:
 	$(call FixPath, ./$(TEST_OUTPUT))
 	gcov -a $(call FixPath, ./test_bill.c) $(call FixPath, ./test_source.c) $(call FixPath, ./test_source2.c) $(call FixPath, ./source.c) $(call FixPath, ./source2.c)
 	
-	cppcheck:
-	cppcheck --enable=all -I $(INC_HEADER) $(SRC)
+cppcheck:
+	cppcheck --enable=all -I $(INC_HEADER) $(SRC)	
 
 valgrind:
 	gcc -I $(INC_HEADER) -I $(INC_TEST) $(TEST_SRC) -o $(call FixPath, ./$(TEST_OUTPUT))
