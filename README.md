@@ -4,7 +4,7 @@
 
 | Build | Code Quality | Unity | Git Inspector |
 |-----|-----|-----|-----|
-| [![C/C++ CI - Build Status](https://github.com/Sankalp256183/MiniProject_C_PBL/actions/workflows/c_build.yml/badge.svg)](https://github.com/Sankalp256183/MiniProject_C_PBL/actions/workflows/c_build.yml) | [![Code Quality - Static Code - Cppcheck](https://github.com/Sankalp256183/MiniProject_C_PBL/actions/workflows/quality_cppcheck.yml/badge.svg)](https://github.com/Sankalp256183/MiniProject_C_PBL/actions/workflows/quality_cppcheck.yml) [![Valgrind](https://github.com/Sankalp256183/MiniProject_C_PBL/actions/workflows/quality_valgrind.yml/badge.svg)](https://github.com/Sankalp256183/MiniProject_C_PBL/actions/workflows/quality_valgrind.yml) | TBD | TBD |
+| [![C/C++ CI - Build Status](https://github.com/Sankalp256183/MiniProject_C_PBL/actions/workflows/c_build.yml/badge.svg)](https://github.com/Sankalp256183/MiniProject_C_PBL/actions/workflows/c_build.yml) | [![Code Quality - Static Code - Cppcheck](https://github.com/Sankalp256183/MiniProject_C_PBL/actions/workflows/quality_cppcheck.yml/badge.svg)](https://github.com/Sankalp256183/MiniProject_C_PBL/actions/workflows/quality_cppcheck.yml) [![Valgrind](https://github.com/Sankalp256183/MiniProject_C_PBL/actions/workflows/quality_valgrind.yml/badge.svg)](https://github.com/Sankalp256183/MiniProject_C_PBL/actions/workflows/quality_valgrind.yml) | [![Unit testing -Unity](https://github.com/Sankalp256183/MiniProject_C_PBL/actions/workflows/unit_testing.yml/badge.svg)](https://github.com/Sankalp256183/MiniProject_C_PBL/actions/workflows/unit_testing.yml) | TBD |
 
 * This is a Mini project based on C programming language with *applied SDLC*.
 
