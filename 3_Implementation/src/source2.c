@@ -8,7 +8,7 @@ char string[15]; //for conversions functions
 
 char *int_to_string_conversion(int integer_no)
 {
-    itoa(integer_no, string, 10);
+    sprintf(string,"%d",integer_no);
     return string;
 }
 
