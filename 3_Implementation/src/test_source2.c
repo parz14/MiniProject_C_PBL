@@ -10,7 +10,7 @@ float test2 = 0; // for testing float to string
 
 int int_to_string_conversion(int integer_no)
 {
-    itoa(integer_no, string, 10);
+    sprintf(string,"%d",integer_no);
     test = atoi(string);
     if (test == integer_no)
         return 1;
