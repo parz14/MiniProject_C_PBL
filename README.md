@@ -4,7 +4,7 @@
 
 | Build | Code Quality | Unity | Git Inspector |
 |-----|-----|-----|-----|
-| TBD | TBD | TBD | TBD |
+| [![C/C++ CI - Build Status](https://github.com/Sankalp256183/MiniProject_C_PBL/actions/workflows/c_build.yml/badge.svg)](https://github.com/Sankalp256183/MiniProject_C_PBL/actions/workflows/c_build.yml) | TBD | TBD | TBD |
 
 * This is a Mini project based on C programming language with *applied SDLC*.
 
