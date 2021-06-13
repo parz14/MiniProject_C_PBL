@@ -3,7 +3,7 @@
  * @author sankalp 256183
  * @brief main file with data input logic and function callings for file opertaion
  * @version 0.1
- * @date 2021-04-14
+ * @date 2021-06-13
  * 
  * @copyright Copyright (c) 2021
  * 
@@ -13,9 +13,11 @@
 
 int main()
 {
-    float total_price = 0, discount = 0, final_price = 0, quantity = 0;
-    char name[15], choice, choice2;
-    int counter_number, total_item_no;
+    float total_price = 0, discount = 0, final_price = 0;
+
+    char name[15], choice, choice2, choice3, choice4;
+
+    int counter_number, item_number, total_item_no = 0, index = 0, quantity = 0, quantity_change = 0, difference = 0;
 
     printf("Welcome!, please enter the counter number\n");
     scanf("%d", &counter_number);
@@ -23,41 +25,228 @@ int main()
     printf("Please enter the name of customer\n");
     scanf("%s", name);
 
-l2: //label 2
-    total_price = 0;
-    quantity = 0;
-    printf("Enter total number of items:\n");
-    scanf("%d", &total_item_no);
-
+    //dynamic structure array for item details
     item_details *ptr;
-    ptr = (item_details *)calloc(total_item_no, sizeof(item_details));
+    //need to change initillization
+    ptr = (item_details *)calloc(10, sizeof(item_details));
 
-    // input details of items
-    for (int index = 0; index < total_item_no; index++)
+    /* **********MODULE 1: input details of items********** */
+    do
     {
+        //price
         printf("Enter detail of item no %d\n", index + 1);
-
         printf("Price:\n");
         scanf("%f", &ptr[index].price);
 
+    //discount on individual item
+    l1: //label 1
+        printf("Apply Product Discount?, Y for 'yes' N for 'no'\n");
+        getchar();
+        scanf("%c", &choice);
+
+        //discount logic
+        if (choice == 'Y')
+        {
+            printf("Enter Discount percentage:\n");
+            scanf("%f", &ptr[index].discount);
+            // final price of item after discount
+            ptr[index].item_price = ptr[index].price - (ptr[index].price * (ptr[index].discount / 100));
+        }
+
+        else if (choice == 'N')
+        {
+            printf("No discount applied\n");
+            ptr[index].item_price = ptr[index].price;
+        }
+
+        else
+        {
+            printf("Please enter correct choice\n");
+            goto l1;
+        }
+
+        //quantity of item
         printf("Quantity:\n");
         scanf("%d", &ptr[index].quantity);
 
+        //total quantity
         quantity = quantity + ptr[index].quantity;
-    }
 
-    // calculation of total price
-    for (int index = 0; index < total_item_no; index++)
+        //to add new item details
+        printf("Add new item?, Y for 'yes' N for 'no'\n");
+        getchar();
+        scanf("%c", &choice2);
+        index++;
+        total_item_no++;
+
+    } while (choice2 == 'Y');
+
+    /*// calculation of total price of all items
+    for (index = 0; index < total_item_no; index++)
     {
-        total_price = total_price + ((ptr[index].price) * (ptr[index].quantity));
-    }
+        total_price = total_price + ((ptr[index].item_price) * (ptr[index].quantity));
+    }*/
 
-l1: //label 1 , Discount calculation
-    printf("Apply Discount?, Y for 'yes' N for 'no'\n");
+    /* **********MODULE 2: Review of input details and editing********** */
+
+    //*****REVIEW*****
+
+l2: //label 2
+    printf("Review input item details?, Y for 'yes' N for 'no'\n");
     getchar();
     scanf("%c", &choice);
 
-    //conditions set1
+    if (choice == 'Y')
+    {
+        // display all item details
+        for (index = 0; index < total_item_no; index++)
+        {
+            printf("Details of item no %d\n", index + 1);
+            printf("Total Price: %f\n", (ptr[index].item_price * ptr[index].quantity));
+            printf("Quantity: %d\n", ptr[index].quantity);
+            printf("\n");
+        }
+
+        //*****Input Details Editing*****
+
+    l3: //label 3
+        printf("Edit input details?, Y for 'yes' N for 'no'\n");
+        getchar();
+        scanf("%c", &choice2);
+
+        if (choice2 == 'Y')
+        {
+            printf("Enter the Item number to be updated:\n");
+            scanf("%d", &item_number);
+        l4: //label 4
+            printf("Delete or Update Item number %d?, D for 'delete' U for 'update'\n", item_number);
+            getchar();
+            scanf("%c", &choice3);
+            //DELETE
+            if (choice3 == 'D')
+            {
+                quantity = quantity - ptr[item_number - 1].quantity;
+                for (index = item_number; index < total_item_no; index++)
+                {
+                    ptr[index - 1].price = ptr[index].price;
+                    ptr[index - 1].discount = ptr[index].discount;
+                    ptr[index - 1].quantity = ptr[index].quantity;
+                    ptr[index - 1].item_price = ptr[index].item_price;
+                }
+                total_item_no--;
+            
+                //display items after deletion
+                for (index = 0; index < total_item_no; index++)
+                {
+                    printf("Details of item no %d\n", index + 1);
+                    printf("Total Price: %f\n", (ptr[index].item_price * ptr[index].quantity));
+                    printf("Quantity: %d\n", ptr[index].quantity);
+                    printf("\n");
+                }
+                goto l3;
+            }
+
+            //UPDATE
+            else if (choice3 == 'U')
+            {
+                //update price
+                printf("Price:\n");
+                scanf("%f", &ptr[item_number - 1].price);
+
+            //update discount
+            l5: //label 5
+                printf("Update Product Discount?, Y for 'yes' N for 'no'\n");
+                getchar();
+                scanf("%c", &choice4);
+                //discount logic
+                if (choice4 == 'Y')
+                {
+                    printf("Enter Discount percentage:\n");
+                    scanf("%f", &ptr[item_number - 1].discount);
+                    // final price after updated discount
+                    ptr[item_number - 1].item_price = ptr[item_number - 1].price - (ptr[item_number - 1].price * (ptr[item_number - 1].discount / 100));
+                }
+
+                else if (choice4 == 'N')
+                {
+                    printf("No discount applied\n");
+                    ptr[item_number - 1].item_price = ptr[item_number - 1].price;
+                }
+
+                else
+                {
+                    printf("Please enter correct choice\n");
+                    goto l5;
+                }
+
+                //update quantity
+                printf("Quantity:\n");
+                scanf("%d", &quantity_change);
+                
+                //total quantity calculation after update
+                if (quantity_change > ptr[item_number - 1].quantity)
+                {
+                    difference = quantity_change - ptr[item_number - 1].quantity;
+                    quantity = quantity + difference;
+                }
+                else
+                {
+                    difference = ptr[item_number - 1].quantity - quantity_change;
+                    quantity = quantity - difference;
+                }
+                ptr[item_number - 1].quantity = quantity_change;
+                //display items after updation
+                for (index = 0; index < total_item_no; index++)
+                {
+                    printf("Details of item no %d\n", index + 1);
+                    printf("Total Price: %f\n", (ptr[index].item_price * ptr[index].quantity));
+                    printf("Quantity: %d\n", ptr[index].quantity);
+                    printf("\n");
+                }
+                goto l3;
+            }
+
+            else
+            {
+                printf("Please enter correct choice\n");
+                goto l4;
+            }
+        }
+
+        else if (choice2 == 'N')
+        {
+            printf("No Edits!, Item Details Saved!\n");
+        }
+
+        else
+        {
+            printf("Please enter correct choice\n");
+            goto l3;
+        } // End of EDITING PART
+    }
+
+    else if (choice == 'N')
+    {
+        printf("No Review!, Item Details Saved!\n");
+    }
+    else
+    {
+        printf("Please enter correct choice\n");
+        goto l2;
+    }
+
+    // calculation of final total price after full update
+    for (index = 0; index < total_item_no; index++)
+    {
+        total_price = total_price + ((ptr[index].item_price) * (ptr[index].quantity));
+    }
+
+/* **********MODULE 3: Overall Discount Calculation********** */
+l6: //label 6
+    printf("Apply Overall Discount?, Y for 'yes' N for 'no'\n");
+    getchar();
+    scanf("%c", &choice);
+
     if (choice == 'Y')
     {
         printf("Enter Discount percentage:\n");
@@ -68,97 +257,66 @@ l1: //label 1 , Discount calculation
 
     else if (choice == 'N')
     {
-        printf("No discount applied\n");
+        printf("No overall discount applied\n");
         final_price = total_price;
     }
 
     else
     {
         printf("Please enter correct choice\n");
-        goto l1;
+        goto l6;
     }
 
-l4: //label 4
-    printf("Review input item details?, Y for 'yes' N for 'no'\n");
+/* **********MODULE 4: Bill Generartion********** */
+l7: //label 7
+    printf("Generate Bill?, Y for 'yes' N for 'no'\n");
     getchar();
     scanf("%c", &choice);
-
-    //condition set 2
     if (choice == 'Y')
     {
-        // display all item details
-        for (int index = 0; index < total_item_no; index++)
-        {
-            printf("Details of item no %d\n", index + 1);
-            printf("Price: %f\n", ptr[index].price);
-            printf("Quantity: %d\n", ptr[index].quantity);
-            printf("\n");
-        }
+        //files logic & function calling
+        // file pointers
+        FILE *fptr = NULL;
+        FILE *fptr2 = NULL;
 
-    l3: //label 3
-        printf("Want to change input details?, Y for 'yes' N for 'no'\n");
-        getchar();
-        scanf("%c", &choice2);
+        fptr = fopen("Template_no_2.txt", "r");
+        fptr2 = fopen("genBill.txt", "w");
 
-        //condition set 3
-        if (choice2 == 'Y')
-            goto l2;
+        char str[400];
+        fgets(str, 400, fptr);
+        char *newstr;
 
-        else if (choice2 == 'N')
-        {
-            printf("Details saved!\n");
-        }
+        //function pointer declaration of int_to_conversion()
+        char *(*intts)(int);
+        intts = int_to_string_conversion;
 
-        else
-        {
-            printf("Please enter correct choice\n");
-            goto l3;
-        }
+        //function pointer declaration of int_to_conversion()
+        char *(*fts)(float);
+        fts = float_to_string_conversion;
+
+        newstr = replace_word(str, "{{name}}", name);
+        newstr = replace_word(newstr, "{{counter_no}}", (intts)(counter_number));
+        newstr = replace_word(newstr, "{{date}}", __DATE__);
+        newstr = replace_word(newstr, "{{discount}}", (fts)(discount));
+        newstr = replace_word(newstr, "{{final_price}}", (fts)(final_price));
+        newstr = replace_word(newstr, "{{total_item_no}}", (intts)(quantity));
+        newstr = replace_word(newstr, "{{total_price}}", (fts)(total_price));
+
+        fprintf(fptr2, "%s", newstr);
+        fclose(fptr);
+        fclose(fptr2);
+        free(ptr);
+        return 0;
     }
 
     else if (choice == 'N')
     {
-        printf("Details Saved!");
+        free(ptr);
+        return 0;
     }
-
     else
     {
         printf("Please enter correct choice\n");
-        goto l4;
+        goto l7;
     }
-
-    //files logic & function calling
-
-    // file pointers
-    FILE *fptr = NULL;
-    FILE *fptr2 = NULL;
-
-    fptr = fopen("Template_no_2.txt", "r");
-    fptr2 = fopen("genBill.txt", "w");
-
-    char str[400];
-    fgets(str, 400, fptr);
-    char *newstr;
-
-    //function pointer declaration of int_to_conversion()
-    char *(*intts)(int);
-    intts = int_to_string_conversion;
-
-    //function pointer declaration of int_to_conversion()
-    char *(*fts)(float);
-    fts = float_to_string_conversion;
-
-    newstr = replace_word(str, "{{name}}", name);
-    newstr = replace_word(newstr, "{{counter_no}}", (intts)(counter_number));
-    newstr = replace_word(newstr, "{{date}}", __DATE__);
-    newstr = replace_word(newstr, "{{discount}}", (fts)(discount));
-    newstr = replace_word(newstr, "{{final_price}}", (fts)(final_price));
-    newstr = replace_word(newstr, "{{total_item_no}}", (intts)(quantity));
-    newstr = replace_word(newstr, "{{total_price}}", (fts)(total_price));
-
-    fprintf(fptr2, "%s", newstr);
-    fclose(fptr);
-    fclose(fptr2);
-    free(ptr);
-    return 0;
 }
