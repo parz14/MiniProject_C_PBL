@@ -27,6 +27,8 @@ typedef struct item_details
 {
     int quantity;
     float price;
+    float discount;
+    float item_price;
 } item_details;
 
 /**
