@@ -64,3 +64,4 @@ clean:
 	$(RM) *.gcda
 	$(RM) *.gcno
 	$(RM) *.gcov
+	$(RM) *genBill.txt
